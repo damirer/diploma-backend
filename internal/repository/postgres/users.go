@@ -24,7 +24,7 @@ func (r *Repository) CreateUser(ctx context.Context, data users.User) (id string
 
 	query := `
 			INSERT INTO users (email, name, password)
-			VALUES ($1, $2)
+			VALUES ($1, $2,$3)
 			RETURNING id;`
 
 	args := []interface{}{data.Email, data.Name, data.Password}
@@ -95,18 +95,6 @@ func (r *Repository) GetUserByEmail(ctx context.Context, id string) (dest users.
 			WHERE email = $1;`
 
 	args := []interface{}{id}
-
-	err = r.db.GetContext(ctx, &dest, query, args...)
-	return
-}
-
-func (r *Repository) GetUserByEmailAndPassword(ctx context.Context, email, password string) (dest users.User, err error) {
-	query := `
-			SELECT created_at, updated_at, id, email, name, password 
-			FROM users
-			WHERE email = $1 AND password = $2;`
-
-	args := []interface{}{email, password}
 
 	err = r.db.GetContext(ctx, &dest, query, args...)
 	return

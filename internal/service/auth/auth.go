@@ -48,17 +48,16 @@ func (s *Service) SignUp(ctx context.Context, req grant.Request) (dest grant.Res
 func (s *Service) SignIn(ctx context.Context, req grant.Request) (dest grant.Response, err error) {
 	logger := log.LoggerFromContext(ctx).Named("SignIn")
 
-	req.Password, err = hashPassword(req.Password)
-	if err != nil {
-		logger.Error("failed to hash", zap.Error(err))
-		return
-	}
-
-	data, err := s.userRepository.GetUserByEmailAndPassword(ctx, req.Login, req.Password)
+	data, err := s.userRepository.GetUserByEmail(ctx, req.Login)
 	if err != nil {
 		if !errors.Is(err, sql.ErrNoRows) {
 			logger.Error("failed to get user", zap.Error(err))
 		}
+		return
+	}
+
+	if !checkPasswordHash(req.Password, data.Password) {
+		err = errors.New("invalid password")
 		return
 	}
 
