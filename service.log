@@ -1,0 +1,11 @@
+2024-11-21T18:59:37.831+0600	ERROR	app/app.go:29	ERR_INIT_CONFIGS	{"error": "required key APP_MODE missing value"}
+account-service/internal/app.Run
+	C:/damir/account-service/internal/app/app.go:29
+main.main
+	C:/damir/account-service/main.go:18
+runtime.main
+	C:/Program Files/Go/src/runtime/proc.go:271
+2024-11-21T19:00:19.693+0600	INFO	app/app.go:78	Server started on http://localhost:2003/swagger/index.html
+2024-11-21T19:03:32.825+0600	ERROR	server/server.go:42	ERR_SERVE_HTTP	{"error": "http: Server closed"}
+account-service/pkg/server.(*Server).Run.func1
+	C:/damir/account-service/pkg/server/server.go:42

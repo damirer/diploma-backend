@@ -1,0 +1,1938 @@
+definitions:
+  bpm.Address:
+    properties:
+      address:
+        type: string
+      apartmentNumber: {}
+      blockNumber:
+        type: string
+      cityCode: {}
+      cityName:
+        type: string
+      cityTypeId: {}
+      cityTypeName:
+        type: string
+      contragentId:
+        type: number
+      countryCode:
+        type: string
+      countryName:
+        type: string
+      id:
+        type: integer
+      kvartal: {}
+      microRaion: {}
+      regionCode: {}
+      regionName: {}
+      stateCode: {}
+      stateName: {}
+      streetName:
+        type: string
+      type:
+        type: string
+    type: object
+  bpm.Contact:
+    properties:
+      contragentId:
+        type: integer
+      id:
+        type: integer
+      newValue: {}
+      note: {}
+      primaryFlag:
+        type: string
+      type:
+        type: string
+      typeName:
+        type: string
+      value: {}
+      verifyDate:
+        type: string
+      verifyType:
+        type: string
+    type: object
+  bpm.Contragent:
+    properties:
+      age:
+        type: number
+      birthDate:
+        type: string
+      birthPlace:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: integer
+      genderName:
+        type: string
+      id:
+        type: number
+      iin:
+        type: string
+      lastName:
+        type: string
+      longName:
+        type: string
+      middleName:
+        type: string
+      registrationDate:
+        type: string
+      type:
+        type: integer
+      verifyDate:
+        type: string
+      verifyType:
+        type: string
+    type: object
+  bpm.ContragentRequest:
+    properties:
+      addresses:
+        items:
+          $ref: '#/definitions/bpm.Address'
+        type: array
+      contacts:
+        items:
+          $ref: '#/definitions/bpm.Contact'
+        type: array
+      contragent:
+        $ref: '#/definitions/bpm.Contragent'
+      documents:
+        items:
+          $ref: '#/definitions/bpm.Document'
+        type: array
+      id:
+        type: string
+      iin:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      questionaries:
+        items:
+          $ref: '#/definitions/bpm.Questionarie'
+        type: array
+    type: object
+  bpm.Document:
+    properties:
+      contragentId:
+        type: number
+      description: {}
+      expireDate:
+        type: string
+      id:
+        type: number
+      issueDate:
+        type: string
+      issuerId:
+        type: number
+      issuerName:
+        type: string
+      issuerNameRu:
+        type: string
+      note: {}
+      number:
+        type: string
+      serial: {}
+      type:
+        type: string
+      typeName:
+        type: string
+      verifyDate:
+        type: string
+      verifyType:
+        type: string
+    type: object
+  bpm.DocumentWithUserInfo:
+    properties:
+      birthDate:
+        type: string
+      childFName:
+        type: string
+      childGender:
+        type: string
+      childIIN:
+        type: string
+      contragentId:
+        type: number
+      description: {}
+      expireDate:
+        type: string
+      id:
+        type: number
+      issueDate:
+        type: string
+      issuerId:
+        type: number
+      issuerName:
+        type: string
+      issuerNameRu:
+        type: string
+      note: {}
+      number:
+        type: string
+      serial: {}
+      type:
+        type: string
+      typeName:
+        type: string
+      verifyDate:
+        type: string
+      verifyType:
+        type: string
+    type: object
+  bpm.Questionarie:
+    properties:
+      contragentId:
+        type: integer
+      id:
+        type: number
+      nameRu:
+        type: string
+      questAnswer: {}
+      questAnswerName: {}
+      questId:
+        type: string
+      questName:
+        type: string
+    type: object
+  compliance.SaveChildContragentRequest:
+    properties:
+      birthDate:
+        type: string
+      childGender:
+        type: string
+      childIIN:
+        type: string
+      documentNumber:
+        type: string
+      documentType:
+        type: string
+      expireDate:
+        type: string
+      issueDate:
+        type: string
+      issuedBy:
+        type: string
+      parentIIN:
+        type: string
+      parentPhone:
+        type: string
+    type: object
+  crm.Dossier:
+    properties:
+      id:
+        type: string
+      pApartment:
+        type: string
+      pBankCode:
+        type: string
+      pBirthCountryWUEN:
+        type: string
+      pBirthCountryWURU:
+        type: string
+      pBirthDate:
+        type: string
+      pBranch:
+        type: string
+      pBranchSpmCode:
+        type: string
+      pCentralDepositaryId:
+        type: string
+      pChannel:
+        type: string
+      pCity:
+        type: string
+      pClientAddress:
+        type: string
+      pCodeStr:
+        type: string
+      pColvirBsDepId:
+        type: string
+      pColvirBsId:
+        type: string
+      pCountry:
+        type: string
+      pCountryFullName:
+        type: string
+      pDigitalProfile:
+        type: string
+      pDsFinishdate:
+        type: string
+      pDsSign:
+        type: string
+      pDsStartdate:
+        type: string
+      pEmployer:
+        type: string
+      pFI:
+        type: string
+      pFatcaCode:
+        type: string
+      pFatcaSign:
+        type: string
+      pGender:
+        type: string
+      pGivenName:
+        type: string
+      pGivenNameLat:
+        type: string
+      pHasIP:
+        type: string
+      pHome:
+        type: string
+      pIin:
+        type: string
+      pIsDuplicate:
+        type: string
+      pIsEmployee:
+        type: string
+      pIsInfoAsmAgree:
+        type: string
+      pIsVIP:
+        type: string
+      pIsWalletDossier:
+        type: string
+      pJob:
+        type: string
+      pKindActivity:
+        type: string
+      pMaritalStatus:
+        type: string
+      pMiddleName:
+        type: string
+      pModerSign:
+        type: string
+      pModifiedOn:
+        type: string
+      pOWCode:
+        type: string
+      pResidentStatus:
+        type: string
+      pSegment:
+        type: string
+      pStreet:
+        type: string
+      pSurname:
+        type: string
+      pSurnameLat:
+        type: string
+      pTrustedPhone:
+        type: string
+      pUDLFromDate:
+        type: string
+      pUDLMainFl:
+        type: string
+      pUDLNumber:
+        type: string
+      pUDLRegistratedBy:
+        type: string
+      pUDLToDate:
+        type: string
+      pVer:
+        type: string
+      pWUTownName:
+        type: string
+      status:
+        type: string
+    type: object
+  device.Entity:
+    properties:
+      accountId:
+        type: string
+      deviceId:
+        type: string
+      deviceModel:
+        type: string
+      deviceOS:
+        type: string
+      disabled:
+        type: boolean
+      id:
+        type: string
+      lastLogin:
+        type: string
+      source:
+        type: string
+      version:
+        type: string
+    type: object
+  egov.SessionResponse:
+    properties:
+      id:
+        type: string
+      link:
+        type: string
+      sessionLifetime:
+        type: integer
+    type: object
+  gbd.AddressFL:
+    properties:
+      arcode:
+        type: string
+      beginDate:
+        type: string
+      building:
+        type: string
+      city:
+        type: string
+      country:
+        $ref: '#/definitions/gbd.CountryFL'
+      district:
+        $ref: '#/definitions/gbd.District'
+      endDate:
+        type: string
+      region:
+        $ref: '#/definitions/gbd.Region'
+      street:
+        type: string
+      type:
+        $ref: '#/definitions/gbd.Type'
+    type: object
+  gbd.Addresses:
+    properties:
+      address:
+        $ref: '#/definitions/gbd.AddressFL'
+    type: object
+  gbd.BirthPlace:
+    properties:
+      city:
+        type: string
+      country:
+        $ref: '#/definitions/gbd.CountryFL'
+      district:
+        $ref: '#/definitions/gbd.District'
+      region:
+        $ref: '#/definitions/gbd.Region'
+    type: object
+  gbd.Citizenship:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.CountryFL:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.District:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.Document:
+    properties:
+      beginDate:
+        type: string
+      birthDate:
+        type: string
+      endDate:
+        type: string
+      issueOrganization:
+        $ref: '#/definitions/gbd.IssueOrganization'
+      name:
+        type: string
+      number:
+        type: string
+      patronymic:
+        type: string
+      status:
+        $ref: '#/definitions/gbd.StatusFL'
+      surname:
+        type: string
+      type:
+        $ref: '#/definitions/gbd.Type'
+    type: object
+  gbd.Documents:
+    properties:
+      document:
+        items:
+          $ref: '#/definitions/gbd.Document'
+        type: array
+    type: object
+  gbd.Gender:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.IssueOrganization:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.LifeStatus:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.Nationality:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.PersonInfo:
+    properties:
+      addresses:
+        $ref: '#/definitions/gbd.Addresses'
+      birthDate:
+        type: string
+      birthPlace:
+        $ref: '#/definitions/gbd.BirthPlace'
+      citizenship:
+        $ref: '#/definitions/gbd.Citizenship'
+      documents:
+        $ref: '#/definitions/gbd.Documents'
+      engFirstName:
+        type: string
+      engSurname:
+        type: string
+      gender:
+        $ref: '#/definitions/gbd.Gender'
+      iin:
+        type: string
+      lifeStatus:
+        $ref: '#/definitions/gbd.LifeStatus'
+      name:
+        type: string
+      nationality:
+        $ref: '#/definitions/gbd.Nationality'
+      patronymic:
+        type: string
+      phone:
+        type: string
+      regAddress:
+        $ref: '#/definitions/gbd.RegAddress'
+      surname:
+        type: string
+    type: object
+  gbd.RegAddress:
+    properties:
+      arcode:
+        type: string
+      beginDate:
+        type: string
+      building:
+        type: string
+      city:
+        type: string
+      country:
+        $ref: '#/definitions/gbd.CountryFL'
+      district:
+        $ref: '#/definitions/gbd.District'
+      invalidity:
+        $ref: '#/definitions/gbd.StatusFL'
+      region:
+        $ref: '#/definitions/gbd.Region'
+      status:
+        $ref: '#/definitions/gbd.StatusFL'
+      street:
+        type: string
+    type: object
+  gbd.Region:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  gbd.ResponseFU:
+    properties:
+      content:
+        type: string
+      continue:
+        type: boolean
+      contragent:
+        $ref: '#/definitions/bpm.ContragentRequest'
+      data:
+        $ref: '#/definitions/gbd.PersonInfo'
+      description:
+        type: string
+      processing:
+        type: boolean
+      status:
+        type: string
+      statusName:
+        type: string
+    type: object
+  gbd.StatusFL:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    type: object
+  gbd.Type:
+    properties:
+      changeDate:
+        type: string
+      code:
+        type: string
+      nameKz:
+        type: string
+      nameRu:
+        type: string
+    type: object
+  grant.Grant:
+    properties:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+      grant_type:
+        type: string
+    type: object
+  homebank.LoanInfo:
+    properties:
+      dbzNumber:
+        type: string
+      iin:
+        type: string
+      loanCloseDate:
+        type: string
+      loanEndDate:
+        type: string
+      loanStatus:
+        type: string
+      principalDebt: {}
+      requestId:
+        type: string
+      resultCode:
+        type: integer
+      resultDescription:
+        type: string
+    type: object
+  response.Object:
+    properties:
+      data: {}
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  session.Entity:
+    properties:
+      address:
+        type: string
+      birthDate:
+        type: string
+      code:
+        type: string
+      documentFromDate:
+        type: string
+      documentNumber:
+        type: string
+      documentRegisteredBy:
+        type: string
+      documentToDate:
+        type: string
+      documentType:
+        type: string
+      economicSectorCode:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      iin:
+        type: string
+      isDisabled:
+        type: boolean
+      lastName:
+        type: string
+      middleName:
+        type: string
+      passed:
+        type: boolean
+      phone:
+        type: string
+      position:
+        type: string
+      residency:
+        type: string
+      source:
+        type: string
+      timeoutDate:
+        type: string
+      token:
+        type: string
+      type:
+        type: integer
+      userId:
+        type: string
+      workplace:
+        type: string
+    type: object
+  session.Impersonal:
+    properties:
+      isAppInstalled:
+        type: boolean
+      lastLogin:
+        type: string
+      policy:
+        items:
+          $ref: '#/definitions/session.Policy'
+        type: array
+      registrationDate:
+        type: string
+    type: object
+  session.Policy:
+    properties:
+      "No":
+        type: string
+      conclusionDate:
+        type: string
+      insrBegin:
+        type: string
+      insrEnd:
+        type: string
+      insurancePremium:
+        type: string
+      name:
+        type: string
+      periodicity:
+        type: string
+      status:
+        type: string
+      subscription:
+        type: boolean
+    type: object
+  session.Response:
+    properties:
+      code:
+        type: string
+      id:
+        type: string
+      iin:
+        type: string
+      isDisabled:
+        type: boolean
+      passed:
+        type: boolean
+      phone:
+        type: string
+      timeoutDate:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: :-)
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Account service of OpenAPI
+  version: 3.0.3
+paths:
+  /auth:
+    post:
+      consumes:
+      - application/json
+      description: Авторизация через егов халык айди каскей и тп
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/grant.Grant'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Authentification
+      tags:
+      - auth
+  /auth/bts/link:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query param
+        in: query
+        name: sessionID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Generate link
+      tags:
+      - auth
+  /auth/devices:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/device.Entity'
+      - default: ios
+        description: type
+        in: query
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получение устройств пользователей по ОС
+      tags:
+      - device
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/device.Entity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Сохранение устройства пользователя
+      tags:
+      - device
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/device.Entity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Обновление устройства пользователя
+      tags:
+      - device
+  /auth/devices/account:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: ios
+        description: iin
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/device.Entity'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получение устройство пользователя
+      tags:
+      - device
+  /auth/egov/link/mobile:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: ios
+        description: source
+        in: query
+        name: source
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/egov.SessionResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Генерация ссылки на подписание егов
+      tags:
+      - auth
+  /auth/iin:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query param
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: checking that iin is valid
+      tags:
+      - auth
+  /auth/otps:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/grant.Grant'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Check OTP
+      tags:
+      - auth
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query param
+        in: query
+        name: phone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Send otp
+      tags:
+      - auth
+  /auth/phone:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: query param
+        in: query
+        name: phone
+        required: true
+        type: string
+      - description: query param
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: checking whether the iin belongs to phone number
+      tags:
+      - auth
+  /auth/sessions:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: scope
+        in: formData
+        name: scope
+        required: true
+        type: string
+      - description: iin
+        in: formData
+        name: iin
+        type: string
+      - description: phone
+        in: formData
+        name: phone
+        type: string
+      - description: xml
+        in: formData
+        name: xml
+        type: string
+      - description: bin
+        in: formData
+        name: email
+        type: string
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Create a session
+      tags:
+      - auth
+  /auth/sessions/{id}:
+    get:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Get a session
+      tags:
+      - auth
+    put:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: "040128500521"
+        description: code
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Update a session
+      tags:
+      - auth
+  /auth/sessions/{id}/status:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: bool
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить статус сессии
+      tags:
+      - auth
+  /contragent:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      - description: id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить неполную информацию контрагента
+      tags:
+      - contragent
+  /contragent/addresses:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/bpm.Contact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить адреса  контрагента
+      tags:
+      - contragent
+  /contragent/contacts:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/bpm.Contact'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить контакты контрагента
+      tags:
+      - contragent
+  /contragent/documents:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/bpm.Document'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить документы  контрагента
+      tags:
+      - contragent
+  /contragent/insis:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      - description: id
+        in: query
+        name: id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/bpm.ContragentRequest'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить полную информацию контрагента
+      tags:
+      - contragent
+  /contragent/save/child:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: req body
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/compliance.SaveChildContragentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Save contragent
+      tags:
+      - contragent
+  /users:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: 8b092b75-d338-4716-8019-54f245c9462c
+        description: id
+        in: query
+        name: id
+        type: string
+      - default: "040128500521"
+        description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Get user by id
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - default: 8b092b75-d338-4716-8019-54f245c9462c
+        description: sessionID
+        in: query
+        name: id
+        type: string
+      - default: "040128500521"
+        description: password
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Create new user
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/session.Entity'
+      - description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Update user by id
+      tags:
+      - user
+  /users/children:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      - default: "0000000000"
+        description: child_iin
+        in: query
+        name: child_iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/bpm.DocumentWithUserInfo'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить данные ребенка по ИИН родителя и ребенка
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/session.Entity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gbd.ResponseFU'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Get info about user children by iin && phone
+      tags:
+      - user
+  /users/contragent/gbdfl:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      - default: "0000000000"
+        description: phone
+        in: query
+        name: phone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Object'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Сохранить данные контрагента через информацию гбдфл
+      tags:
+      - contragent
+  /users/contragent/gbdfl/dso:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      - default: "0000000000"
+        description: phone
+        in: query
+        name: phone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Object'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Сохранить данные ДСО контрагента через информацию гбдфл
+      tags:
+      - contragent
+  /users/credits:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/homebank.LoanInfo'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить кредиты пользователя
+      tags:
+      - user
+  /users/crm:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/crm.Dossier'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить данные из CRM
+      tags:
+      - user
+  /users/exist:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "040128500521"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: IsValid is there a user with such an iin
+      tags:
+      - user
+  /users/gbdfl:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/session.Entity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gbd.ResponseFU'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Get info about the gbdfl by iin && phone
+      tags:
+      - user
+  /users/gbdul:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - default: ""
+        description: bin
+        in: query
+        name: bin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Get info about the gbdul by bin
+      tags:
+      - user
+  /users/impersonal:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/session.Impersonal'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Получить обезличенную информацию о человеке
+      tags:
+      - user
+  /users/potential:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: iin
+        in: query
+        name: iin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Create new potential user
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: req body
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/session.Entity'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Object'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Object'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Update potential user
+      tags:
+      - user
+  /users/potential/create:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      - default: "0000000000"
+        description: phone
+        in: query
+        name: phone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/session.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Создание потенциального пользователя
+      tags:
+      - user
+  /users/role:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - default: "0000000000"
+        description: iin
+        in: query
+        name: iin
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Object'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Object'
+      summary: Присвоить роль физ лицо клиент
+      tags:
+      - user
+swagger: "2.0"

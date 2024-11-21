@@ -1,0 +1,2941 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": ":-)",
+        "title": "Account service of OpenAPI",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "3.0.3"
+    },
+    "paths": {
+        "/auth": {
+            "post": {
+                "description": "Авторизация через егов халык айди каскей и тп",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Authentification",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/grant.Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/bts/link": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Generate link",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query param",
+                        "name": "sessionID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/devices": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "Получение устройств пользователей по ОС",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/device.Entity"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "default": "ios",
+                        "description": "type",
+                        "name": "type",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "Обновление устройства пользователя",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/device.Entity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "Сохранение устройства пользователя",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/device.Entity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/devices/account": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "Получение устройство пользователя",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "ios",
+                        "description": "iin",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/device.Entity"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/egov/link/mobile": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Генерация ссылки на подписание егов",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "ios",
+                        "description": "source",
+                        "name": "source",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/egov.SessionResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/iin": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "checking that iin is valid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query param",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/otps": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Check OTP",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/grant.Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Send otp",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query param",
+                        "name": "phone",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/phone": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "checking whether the iin belongs to phone number",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "query param",
+                        "name": "phone",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "query param",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sessions": {
+            "post": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Create a session",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "scope",
+                        "name": "scope",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "phone",
+                        "name": "phone",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "xml",
+                        "name": "xml",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "bin",
+                        "name": "email",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sessions/{id}": {
+            "get": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Get a session",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Update a session",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "040128500521",
+                        "description": "code",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/sessions/{id}/status": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Получить статус сессии",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "bool"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Получить неполную информацию контрагента",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent/addresses": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Получить адреса  контрагента",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bpm.Contact"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent/contacts": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Получить контакты контрагента",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bpm.Contact"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent/documents": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Получить документы  контрагента",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bpm.Document"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent/insis": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Получить полную информацию контрагента",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/bpm.ContragentRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contragent/save/child": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Save contragent",
+                "parameters": [
+                    {
+                        "description": "req body",
+                        "name": "req",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/compliance.SaveChildContragentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "8b092b75-d338-4716-8019-54f245c9462c",
+                        "description": "id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "040128500521",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update user by id",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/session.Entity"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create new user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "8b092b75-d338-4716-8019-54f245c9462c",
+                        "description": "sessionID",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "040128500521",
+                        "description": "password",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/children": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Получить данные ребенка по ИИН родителя и ребенка",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "child_iin",
+                        "name": "child_iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/bpm.DocumentWithUserInfo"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get info about user children by iin \u0026\u0026 phone",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/session.Entity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gbd.ResponseFU"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/contragent/gbdfl": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Сохранить данные контрагента через информацию гбдфл",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "phone",
+                        "name": "phone",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.Object"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/contragent/gbdfl/dso": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "contragent"
+                ],
+                "summary": "Сохранить данные ДСО контрагента через информацию гбдфл",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "phone",
+                        "name": "phone",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.Object"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/credits": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Получить кредиты пользователя",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/homebank.LoanInfo"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/crm": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Получить данные из CRM",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/crm.Dossier"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/exist": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "IsValid is there a user with such an iin",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "040128500521",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/gbdfl": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get info about the gbdfl by iin \u0026\u0026 phone",
+                "parameters": [
+                    {
+                        "description": "request body",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/session.Entity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gbd.ResponseFU"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/gbdul": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get info about the gbdul by bin",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "",
+                        "description": "bin",
+                        "name": "bin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/impersonal": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Получить обезличенную информацию о человеке",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/session.Impersonal"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/potential": {
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update potential user",
+                "parameters": [
+                    {
+                        "description": "req body",
+                        "name": "req",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/session.Entity"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create new potential user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/potential/create": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Создание потенциального пользователя",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "phone",
+                        "name": "phone",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/session.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/role": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Присвоить роль физ лицо клиент",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "0000000000",
+                        "description": "iin",
+                        "name": "iin",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/response.Object"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.Object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "bpm.Address": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "apartmentNumber": {},
+                "blockNumber": {
+                    "type": "string"
+                },
+                "cityCode": {},
+                "cityName": {
+                    "type": "string"
+                },
+                "cityTypeId": {},
+                "cityTypeName": {
+                    "type": "string"
+                },
+                "contragentId": {
+                    "type": "number"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "countryName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "kvartal": {},
+                "microRaion": {},
+                "regionCode": {},
+                "regionName": {},
+                "stateCode": {},
+                "stateName": {},
+                "streetName": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "bpm.Contact": {
+            "type": "object",
+            "properties": {
+                "contragentId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "newValue": {},
+                "note": {},
+                "primaryFlag": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "typeName": {
+                    "type": "string"
+                },
+                "value": {},
+                "verifyDate": {
+                    "type": "string"
+                },
+                "verifyType": {
+                    "type": "string"
+                }
+            }
+        },
+        "bpm.Contragent": {
+            "type": "object",
+            "properties": {
+                "age": {
+                    "type": "number"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "birthPlace": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "integer"
+                },
+                "genderName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "longName": {
+                    "type": "string"
+                },
+                "middleName": {
+                    "type": "string"
+                },
+                "registrationDate": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "verifyDate": {
+                    "type": "string"
+                },
+                "verifyType": {
+                    "type": "string"
+                }
+            }
+        },
+        "bpm.ContragentRequest": {
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bpm.Address"
+                    }
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bpm.Contact"
+                    }
+                },
+                "contragent": {
+                    "$ref": "#/definitions/bpm.Contragent"
+                },
+                "documents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bpm.Document"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "questionaries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/bpm.Questionarie"
+                    }
+                }
+            }
+        },
+        "bpm.Document": {
+            "type": "object",
+            "properties": {
+                "contragentId": {
+                    "type": "number"
+                },
+                "description": {},
+                "expireDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "issueDate": {
+                    "type": "string"
+                },
+                "issuerId": {
+                    "type": "number"
+                },
+                "issuerName": {
+                    "type": "string"
+                },
+                "issuerNameRu": {
+                    "type": "string"
+                },
+                "note": {},
+                "number": {
+                    "type": "string"
+                },
+                "serial": {},
+                "type": {
+                    "type": "string"
+                },
+                "typeName": {
+                    "type": "string"
+                },
+                "verifyDate": {
+                    "type": "string"
+                },
+                "verifyType": {
+                    "type": "string"
+                }
+            }
+        },
+        "bpm.DocumentWithUserInfo": {
+            "type": "object",
+            "properties": {
+                "birthDate": {
+                    "type": "string"
+                },
+                "childFName": {
+                    "type": "string"
+                },
+                "childGender": {
+                    "type": "string"
+                },
+                "childIIN": {
+                    "type": "string"
+                },
+                "contragentId": {
+                    "type": "number"
+                },
+                "description": {},
+                "expireDate": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "issueDate": {
+                    "type": "string"
+                },
+                "issuerId": {
+                    "type": "number"
+                },
+                "issuerName": {
+                    "type": "string"
+                },
+                "issuerNameRu": {
+                    "type": "string"
+                },
+                "note": {},
+                "number": {
+                    "type": "string"
+                },
+                "serial": {},
+                "type": {
+                    "type": "string"
+                },
+                "typeName": {
+                    "type": "string"
+                },
+                "verifyDate": {
+                    "type": "string"
+                },
+                "verifyType": {
+                    "type": "string"
+                }
+            }
+        },
+        "bpm.Questionarie": {
+            "type": "object",
+            "properties": {
+                "contragentId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "nameRu": {
+                    "type": "string"
+                },
+                "questAnswer": {},
+                "questAnswerName": {},
+                "questId": {
+                    "type": "string"
+                },
+                "questName": {
+                    "type": "string"
+                }
+            }
+        },
+        "compliance.SaveChildContragentRequest": {
+            "type": "object",
+            "properties": {
+                "birthDate": {
+                    "type": "string"
+                },
+                "childGender": {
+                    "type": "string"
+                },
+                "childIIN": {
+                    "type": "string"
+                },
+                "documentNumber": {
+                    "type": "string"
+                },
+                "documentType": {
+                    "type": "string"
+                },
+                "expireDate": {
+                    "type": "string"
+                },
+                "issueDate": {
+                    "type": "string"
+                },
+                "issuedBy": {
+                    "type": "string"
+                },
+                "parentIIN": {
+                    "type": "string"
+                },
+                "parentPhone": {
+                    "type": "string"
+                }
+            }
+        },
+        "crm.Dossier": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "pApartment": {
+                    "type": "string"
+                },
+                "pBankCode": {
+                    "type": "string"
+                },
+                "pBirthCountryWUEN": {
+                    "type": "string"
+                },
+                "pBirthCountryWURU": {
+                    "type": "string"
+                },
+                "pBirthDate": {
+                    "type": "string"
+                },
+                "pBranch": {
+                    "type": "string"
+                },
+                "pBranchSpmCode": {
+                    "type": "string"
+                },
+                "pCentralDepositaryId": {
+                    "type": "string"
+                },
+                "pChannel": {
+                    "type": "string"
+                },
+                "pCity": {
+                    "type": "string"
+                },
+                "pClientAddress": {
+                    "type": "string"
+                },
+                "pCodeStr": {
+                    "type": "string"
+                },
+                "pColvirBsDepId": {
+                    "type": "string"
+                },
+                "pColvirBsId": {
+                    "type": "string"
+                },
+                "pCountry": {
+                    "type": "string"
+                },
+                "pCountryFullName": {
+                    "type": "string"
+                },
+                "pDigitalProfile": {
+                    "type": "string"
+                },
+                "pDsFinishdate": {
+                    "type": "string"
+                },
+                "pDsSign": {
+                    "type": "string"
+                },
+                "pDsStartdate": {
+                    "type": "string"
+                },
+                "pEmployer": {
+                    "type": "string"
+                },
+                "pFI": {
+                    "type": "string"
+                },
+                "pFatcaCode": {
+                    "type": "string"
+                },
+                "pFatcaSign": {
+                    "type": "string"
+                },
+                "pGender": {
+                    "type": "string"
+                },
+                "pGivenName": {
+                    "type": "string"
+                },
+                "pGivenNameLat": {
+                    "type": "string"
+                },
+                "pHasIP": {
+                    "type": "string"
+                },
+                "pHome": {
+                    "type": "string"
+                },
+                "pIin": {
+                    "type": "string"
+                },
+                "pIsDuplicate": {
+                    "type": "string"
+                },
+                "pIsEmployee": {
+                    "type": "string"
+                },
+                "pIsInfoAsmAgree": {
+                    "type": "string"
+                },
+                "pIsVIP": {
+                    "type": "string"
+                },
+                "pIsWalletDossier": {
+                    "type": "string"
+                },
+                "pJob": {
+                    "type": "string"
+                },
+                "pKindActivity": {
+                    "type": "string"
+                },
+                "pMaritalStatus": {
+                    "type": "string"
+                },
+                "pMiddleName": {
+                    "type": "string"
+                },
+                "pModerSign": {
+                    "type": "string"
+                },
+                "pModifiedOn": {
+                    "type": "string"
+                },
+                "pOWCode": {
+                    "type": "string"
+                },
+                "pResidentStatus": {
+                    "type": "string"
+                },
+                "pSegment": {
+                    "type": "string"
+                },
+                "pStreet": {
+                    "type": "string"
+                },
+                "pSurname": {
+                    "type": "string"
+                },
+                "pSurnameLat": {
+                    "type": "string"
+                },
+                "pTrustedPhone": {
+                    "type": "string"
+                },
+                "pUDLFromDate": {
+                    "type": "string"
+                },
+                "pUDLMainFl": {
+                    "type": "string"
+                },
+                "pUDLNumber": {
+                    "type": "string"
+                },
+                "pUDLRegistratedBy": {
+                    "type": "string"
+                },
+                "pUDLToDate": {
+                    "type": "string"
+                },
+                "pVer": {
+                    "type": "string"
+                },
+                "pWUTownName": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "device.Entity": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "deviceId": {
+                    "type": "string"
+                },
+                "deviceModel": {
+                    "type": "string"
+                },
+                "deviceOS": {
+                    "type": "string"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastLogin": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "egov.SessionResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "sessionLifetime": {
+                    "type": "integer"
+                }
+            }
+        },
+        "gbd.AddressFL": {
+            "type": "object",
+            "properties": {
+                "arcode": {
+                    "type": "string"
+                },
+                "beginDate": {
+                    "type": "string"
+                },
+                "building": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "$ref": "#/definitions/gbd.CountryFL"
+                },
+                "district": {
+                    "$ref": "#/definitions/gbd.District"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "region": {
+                    "$ref": "#/definitions/gbd.Region"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/gbd.Type"
+                }
+            }
+        },
+        "gbd.Addresses": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/gbd.AddressFL"
+                }
+            }
+        },
+        "gbd.BirthPlace": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "$ref": "#/definitions/gbd.CountryFL"
+                },
+                "district": {
+                    "$ref": "#/definitions/gbd.District"
+                },
+                "region": {
+                    "$ref": "#/definitions/gbd.Region"
+                }
+            }
+        },
+        "gbd.Citizenship": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.CountryFL": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.District": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.Document": {
+            "type": "object",
+            "properties": {
+                "beginDate": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "issueOrganization": {
+                    "$ref": "#/definitions/gbd.IssueOrganization"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "patronymic": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/gbd.StatusFL"
+                },
+                "surname": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/gbd.Type"
+                }
+            }
+        },
+        "gbd.Documents": {
+            "type": "object",
+            "properties": {
+                "document": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/gbd.Document"
+                    }
+                }
+            }
+        },
+        "gbd.Gender": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.IssueOrganization": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.LifeStatus": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.Nationality": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.PersonInfo": {
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "$ref": "#/definitions/gbd.Addresses"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "birthPlace": {
+                    "$ref": "#/definitions/gbd.BirthPlace"
+                },
+                "citizenship": {
+                    "$ref": "#/definitions/gbd.Citizenship"
+                },
+                "documents": {
+                    "$ref": "#/definitions/gbd.Documents"
+                },
+                "engFirstName": {
+                    "type": "string"
+                },
+                "engSurname": {
+                    "type": "string"
+                },
+                "gender": {
+                    "$ref": "#/definitions/gbd.Gender"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "lifeStatus": {
+                    "$ref": "#/definitions/gbd.LifeStatus"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "$ref": "#/definitions/gbd.Nationality"
+                },
+                "patronymic": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "regAddress": {
+                    "$ref": "#/definitions/gbd.RegAddress"
+                },
+                "surname": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.RegAddress": {
+            "type": "object",
+            "properties": {
+                "arcode": {
+                    "type": "string"
+                },
+                "beginDate": {
+                    "type": "string"
+                },
+                "building": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "$ref": "#/definitions/gbd.CountryFL"
+                },
+                "district": {
+                    "$ref": "#/definitions/gbd.District"
+                },
+                "invalidity": {
+                    "$ref": "#/definitions/gbd.StatusFL"
+                },
+                "region": {
+                    "$ref": "#/definitions/gbd.Region"
+                },
+                "status": {
+                    "$ref": "#/definitions/gbd.StatusFL"
+                },
+                "street": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.Region": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.ResponseFU": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "continue": {
+                    "type": "boolean"
+                },
+                "contragent": {
+                    "$ref": "#/definitions/bpm.ContragentRequest"
+                },
+                "data": {
+                    "$ref": "#/definitions/gbd.PersonInfo"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "processing": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "statusName": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.StatusFL": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "gbd.Type": {
+            "type": "object",
+            "properties": {
+                "changeDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "nameKz": {
+                    "type": "string"
+                },
+                "nameRu": {
+                    "type": "string"
+                }
+            }
+        },
+        "grant.Grant": {
+            "type": "object",
+            "properties": {
+                "client_id": {
+                    "type": "string"
+                },
+                "client_secret": {
+                    "type": "string"
+                },
+                "grant_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "homebank.LoanInfo": {
+            "type": "object",
+            "properties": {
+                "dbzNumber": {
+                    "type": "string"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "loanCloseDate": {
+                    "type": "string"
+                },
+                "loanEndDate": {
+                    "type": "string"
+                },
+                "loanStatus": {
+                    "type": "string"
+                },
+                "principalDebt": {},
+                "requestId": {
+                    "type": "string"
+                },
+                "resultCode": {
+                    "type": "integer"
+                },
+                "resultDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Object": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "session.Entity": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "documentFromDate": {
+                    "type": "string"
+                },
+                "documentNumber": {
+                    "type": "string"
+                },
+                "documentRegisteredBy": {
+                    "type": "string"
+                },
+                "documentToDate": {
+                    "type": "string"
+                },
+                "documentType": {
+                    "type": "string"
+                },
+                "economicSectorCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "isDisabled": {
+                    "type": "boolean"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "middleName": {
+                    "type": "string"
+                },
+                "passed": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "string"
+                },
+                "residency": {
+                    "type": "string"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "timeoutDate": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "string"
+                },
+                "workplace": {
+                    "type": "string"
+                }
+            }
+        },
+        "session.Impersonal": {
+            "type": "object",
+            "properties": {
+                "isAppInstalled": {
+                    "type": "boolean"
+                },
+                "lastLogin": {
+                    "type": "string"
+                },
+                "policy": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/session.Policy"
+                    }
+                },
+                "registrationDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "session.Policy": {
+            "type": "object",
+            "properties": {
+                "No": {
+                    "type": "string"
+                },
+                "conclusionDate": {
+                    "type": "string"
+                },
+                "insrBegin": {
+                    "type": "string"
+                },
+                "insrEnd": {
+                    "type": "string"
+                },
+                "insurancePremium": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "periodicity": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "subscription": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "session.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "iin": {
+                    "type": "string"
+                },
+                "isDisabled": {
+                    "type": "boolean"
+                },
+                "passed": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "timeoutDate": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
