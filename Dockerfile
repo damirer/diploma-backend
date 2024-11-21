@@ -12,7 +12,6 @@ ENV TZ=Asia/Qyzylorda
 
 COPY --from=builder /build/account-service ./account-service
 COPY --from=builder /build/.env ./.env
-COPY --from=builder /build/templates/ ./templates/
 COPY --from=builder /build/migrations/ ./migrations/
 
 # executable
