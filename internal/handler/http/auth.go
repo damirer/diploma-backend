@@ -2,6 +2,7 @@ package http
 
 import (
 	"account-service/internal/domain/grant"
+	"account-service/internal/domain/users"
 	"database/sql"
 	"encoding/json"
 	"errors"
@@ -29,19 +30,39 @@ func (h *Auth) Routes() chi.Router {
 	r.Post("/sign-up", h.signUp)
 	r.Post("/sign-in", h.signIn)
 
+	r.Route("/deps", func(r chi.Router) {
+		r.Get("/", h.getDependencies)
+		r.Post("/", h.setDependencies)
+	})
+
+	r.Post("/t", h.setTracking)
+
 	return r
 }
 
-// @Summary		Авторизация
-// @Description	Авторизация
-// @Tags			auth
-// @Accept			json
-// @Produce		json
-// @Param			request	body		grant.Request	true	"request body"
-// @Success		200		{object}	response.Object
-// @Failure		400		{object}	response.Object
-// @Failure		500		{object}	response.Object
-// @Router			/auth [post]
+func (h *Auth) setTracking(w http.ResponseWriter, r *http.Request) {
+	req := users.SobrietyTracking{}
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		response.BadRequest(w, r, err, nil)
+		return
+	}
+
+	userId, err := extractUserIDFromJWT(r)
+	if err != nil {
+		response.BadRequest(w, r, err, nil)
+		return
+	}
+	req.UserID = userId
+
+	err = h.authService.CreateSobrietyTracking(r.Context(), req)
+	if err != nil {
+		response.InternalServerError(w, r, err)
+		return
+	}
+	response.OK(w, r, response.Object{Success: true})
+}
+
 func (h *Auth) signUp(w http.ResponseWriter, r *http.Request) {
 	req := grant.Request{}
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -80,4 +101,35 @@ func (h *Auth) signIn(w http.ResponseWriter, r *http.Request) {
 		response.InternalServerError(w, r, err)
 	}
 	return
+}
+
+func (h *Auth) getDependencies(w http.ResponseWriter, r *http.Request) {
+	res, err := h.authService.GetDependencies(r.Context())
+	if err != nil {
+		response.InternalServerError(w, r, err)
+		return
+	}
+	response.OK(w, r, res)
+}
+
+func (h *Auth) setDependencies(w http.ResponseWriter, r *http.Request) {
+	req := []users.UserDependency{}
+	err := json.NewDecoder(r.Body).Decode(&req)
+	if err != nil {
+		response.BadRequest(w, r, err, nil)
+		return
+	}
+
+	userId, err := extractUserIDFromJWT(r)
+	if err != nil {
+		response.BadRequest(w, r, err, nil)
+		return
+	}
+
+	err = h.authService.CreateUserDependencies(r.Context(), userId, req)
+	if err != nil {
+		response.InternalServerError(w, r, err)
+		return
+	}
+	response.OK(w, r, response.Object{Success: true})
 }
