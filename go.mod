@@ -17,6 +17,7 @@ require (
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.12.0
 	google.golang.org/grpc v1.45.0
+	github.com/go-chi/cors
 )
 
 require (
