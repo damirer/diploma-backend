@@ -13,6 +13,7 @@ import (
 	"account-service/internal/handler/http"
 	"account-service/internal/service/auth"
 	"account-service/pkg/server/router"
+	"github.com/go-chi/cors"
 )
 
 type Dependencies struct {
@@ -60,6 +61,14 @@ func WithHTTPHandler() Configuration {
 			collectors.NewGoCollector(),
 			collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}),
 		)
+
+		h.HTTP.Use(cors.Handler(cors.Options{
+			AllowedOrigins:   []string{"*"}, 
+			AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+			AllowedHeaders:   []string{"Content-Type", "Authorization"},
+			ExposedHeaders:   []string{"Content-Length"},
+			AllowCredentials: true, 
+			MaxAge:           300,}))
 
 		h.HTTP.Use(middleware.Timeout(h.dependencies.Configs.APP.Timeout))
 
