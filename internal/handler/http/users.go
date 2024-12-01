@@ -40,7 +40,7 @@ func (h *User) GetUserSaving(w http.ResponseWriter, r *http.Request) {
 	res, err := h.authService.GetUserSaving(r.Context(), userId)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			response.BadRequest(w, r, errors.New("Пользователь еще не сохранял"), nil)
+			response.OK(w, r, users.Savings{})
 			return
 		}
 		response.InternalServerError(w, r, err)
