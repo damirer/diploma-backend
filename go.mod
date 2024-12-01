@@ -1,10 +1,11 @@
 module account-service
 
-go 1.18
+go 1.21
 
 require (
 	github.com/766b/chi-prometheus v0.0.0-20211217152057-87afa9aa2ca8
 	github.com/go-chi/chi/v5 v5.0.10
+	github.com/go-chi/cors v1.2.1
 	github.com/go-chi/render v1.0.3
 	github.com/golang-jwt/jwt/v4 v4.1.0
 	github.com/golang-migrate/migrate/v4 v4.15.2
@@ -12,12 +13,10 @@ require (
 	github.com/joho/godotenv v1.4.0
 	github.com/prometheus/client_golang v1.11.0
 	github.com/swaggo/http-swagger/v2 v2.0.1
-	github.com/swaggo/swag v1.16.1
 	go.elastic.co/apm/module/apmzap v1.15.0
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.12.0
 	google.golang.org/grpc v1.45.0
-	github.com/go-chi/cors
 )
 
 require (
@@ -42,6 +41,7 @@ require (
 	github.com/prometheus/common v0.30.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/swaggo/files/v2 v2.0.0 // indirect
+	github.com/swaggo/swag v1.16.1 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106 // indirect

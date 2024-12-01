@@ -39,9 +39,17 @@ type SobrietyTracking struct {
 	MotivationText string    `db:"motivation_text" json:"motivationText,omitempty"`
 }
 
+type Savings struct {
+	ID        string     `json:"id" db:"id"`
+	UserID    string     `json:"userId" db:"user_id"`
+	Money     *float64   `json:"money" db:"money"`
+	StartDate *time.Time `json:"startDate" db:"start_date"`
+}
+
 func ParseFromAuth(req grant.Request) User {
 	return User{
-		Email:    req.Login,
+		Name:     req.Login,
+		Email:    req.Email,
 		Password: req.Password,
 	}
 }

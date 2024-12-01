@@ -2,6 +2,8 @@ package postgres
 
 import (
 	"context"
+	"fmt"
+	"strings"
 	"time"
 
 	"account-service/internal/domain/users"
@@ -112,13 +114,25 @@ func (r *Repository) GetDependencies(ctx context.Context) (dest []users.Dependen
 	return
 }
 
-func (r *Repository) GetUserByEmail(ctx context.Context, id string) (dest users.User, err error) {
+func (r *Repository) GetUserByEmailOrLogin(ctx context.Context, email string, login string) (dest users.User, err error) {
 	query := `
 			SELECT created_at, updated_at, id, email, name, password
 			FROM users
-			WHERE email = $1;`
+			WHERE email = $1 OR name = $2;`
 
-	args := []interface{}{id}
+	args := []interface{}{email, login}
+
+	err = r.db.GetContext(ctx, &dest, query, args...)
+	return
+}
+
+func (r *Repository) GetUserByAny(ctx context.Context, login string) (dest users.User, err error) {
+	query := `
+			SELECT created_at, updated_at, id, email, name, password
+			FROM users
+			WHERE email = $1 OR name = $1;`
+
+	args := []interface{}{login}
 
 	err = r.db.GetContext(ctx, &dest, query, args...)
 	return
@@ -133,5 +147,60 @@ func (r *Repository) GetDependency(ctx context.Context, id string) (dest users.D
 	args := []interface{}{id}
 
 	err = r.db.GetContext(ctx, &dest, query, args...)
+	return
+}
+
+func (r *Repository) CreateUserSavings(ctx context.Context, data users.Savings) (id string, err error) {
+	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
+	defer cancel()
+
+	query := `
+			INSERT INTO user_savings (user_id,	money,	start_date)
+			VALUES ($1, $2,$3)
+			RETURNING id;`
+
+	args := []interface{}{data.UserID, *data.Money, *data.StartDate}
+
+	err = r.db.QueryRowContext(ctx, query, args...).Scan(&id)
+	return
+}
+
+func (r *Repository) GetUserSavings(ctx context.Context, userId string) (dest users.Savings, err error) {
+	query := `
+			SELECT id, user_id,	money,	start_date
+			FROM user_savings
+			WHERE user_id = $1;`
+
+	args := []interface{}{userId}
+
+	err = r.db.GetContext(ctx, &dest, query, args...)
+
+	return
+}
+
+func (r *Repository) UpdateUserSavings(ctx context.Context, data users.Savings) (err error) {
+	sets, args := r.prepareArgs(data)
+	if len(args) > 0 {
+		args = append(args, data.ID)
+		sets = append(sets, "updated_at=CURRENT_TIMESTAMP")
+
+		query := fmt.Sprintf("UPDATE user_savings SET %s WHERE id=$%d", strings.Join(sets, ", "), len(args))
+
+		_, err = r.db.ExecContext(ctx, query, args...)
+	}
+
+	return
+}
+
+func (r *Repository) prepareArgs(data users.Savings) (sets []string, args []any) {
+	if data.StartDate != nil {
+		args = append(args, data.StartDate)
+		sets = append(sets, fmt.Sprintf("start_date=$%d", len(args)))
+	}
+	if data.Money != nil {
+		args = append(args, data.Money)
+		sets = append(sets, fmt.Sprintf("money=$%d", len(args)))
+	}
+
 	return
 }

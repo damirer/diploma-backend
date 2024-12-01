@@ -14,7 +14,7 @@ import (
 func (s *Service) SignUp(ctx context.Context, req grant.Request) (dest grant.Response, err error) {
 	logger := log.LoggerFromContext(ctx).Named("SignUp")
 
-	_, err = s.userRepository.GetUserByEmail(ctx, req.Login)
+	_, err = s.userRepository.GetUserByEmailOrLogin(ctx, req.Email, req.Login)
 	switch {
 	case errors.Is(err, sql.ErrNoRows):
 		data := users.ParseFromAuth(req)
@@ -48,7 +48,7 @@ func (s *Service) SignUp(ctx context.Context, req grant.Request) (dest grant.Res
 func (s *Service) SignIn(ctx context.Context, req grant.Request) (dest grant.Response, err error) {
 	logger := log.LoggerFromContext(ctx).Named("SignIn")
 
-	data, err := s.userRepository.GetUserByEmail(ctx, req.Login)
+	data, err := s.userRepository.GetUserByAny(ctx, req.Login)
 	if err != nil {
 		if !errors.Is(err, sql.ErrNoRows) {
 			logger.Error("failed to get user", zap.Error(err))

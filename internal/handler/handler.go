@@ -1,18 +1,12 @@
 package handler
 
 import (
-	chiprometheus "github.com/766b/chi-prometheus"
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/collectors"
-	httpSwagger "github.com/swaggo/http-swagger/v2"
-
-	"account-service/docs"
 	"account-service/internal/config"
 	"account-service/internal/handler/http"
 	"account-service/internal/service/auth"
 	"account-service/pkg/server/router"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 )
 
@@ -55,36 +49,23 @@ func WithHTTPHandler() Configuration {
 	return func(h *Handler) (err error) {
 		h.HTTP = router.New()
 
-		reg := prometheus.NewRegistry()
-
-		reg.MustRegister(
-			collectors.NewGoCollector(),
-			collectors.NewProcessCollector(collectors.ProcessCollectorOpts{}),
-		)
-
 		h.HTTP.Use(cors.Handler(cors.Options{
-			AllowedOrigins:   []string{"*"}, 
+			AllowedOrigins:   []string{"*"},
 			AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 			AllowedHeaders:   []string{"Content-Type", "Authorization"},
 			ExposedHeaders:   []string{"Content-Length"},
-			AllowCredentials: true, 
-			MaxAge:           300,}))
+			AllowCredentials: true,
+			MaxAge:           300}))
 
 		h.HTTP.Use(middleware.Timeout(h.dependencies.Configs.APP.Timeout))
 
-		prometheusMiddleware := chiprometheus.NewMiddleware("product-service")
-
-		h.HTTP.Use(prometheusMiddleware)
-
-		// Init swagger handler
-		docs.SwaggerInfo.BasePath = h.dependencies.Configs.APP.Path
-		h.HTTP.Get("/swagger/*", httpSwagger.WrapHandler)
-
 		// Init service handlers
 		authHandler := http.NewAuthHandler(h.dependencies.AuthService)
-		
+		userHandler := http.NewUserHandler(h.dependencies.AuthService)
+
 		h.HTTP.Route("/", func(r chi.Router) {
 			r.Mount("/auth", authHandler.Routes())
+			r.Mount("/users", userHandler.Routes())
 		})
 
 		return

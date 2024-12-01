@@ -1,10 +1,8 @@
 package response
 
 import (
-	"account-service/pkg/store"
 	"github.com/go-chi/render"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -18,24 +16,6 @@ type HealthCheck struct {
 	Commit   string            `json:"commit"`
 	Database map[string]string `json:"database"`
 	Version  string            `json:"version"`
-}
-
-func Health(w http.ResponseWriter, r *http.Request) {
-	health := HealthCheck{
-		Commit: os.Getenv("COMMIT_VERSION"),
-		Database: map[string]string{
-			"postgres": "up",
-		},
-		Version: "1.0.0",
-	}
-
-	conn, err := store.NewSQL(os.Getenv("POSTGRES_DSN"))
-	if err != nil {
-		health.Database["postgres"] = "down"
-	}
-	defer conn.Connection.Close()
-
-	OK(w, r, health)
 }
 
 func OK(w http.ResponseWriter, r *http.Request, data any) {
