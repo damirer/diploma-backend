@@ -24,6 +24,8 @@ func NewUserHandler(authService *auth.Service) *User {
 func (h *User) Routes() chi.Router {
 	r := chi.NewRouter()
 
+	r.Get("/", h.GetUsers)
+
 	r.Get("/savings", h.GetUserSaving)
 	r.Post("/savings", h.SaveUserSavings)
 
@@ -70,4 +72,13 @@ func (h *User) SaveUserSavings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	response.OK(w, r, response.Object{Success: true})
+}
+
+func (h *User) GetUsers(w http.ResponseWriter, r *http.Request) {
+	res, err := h.authService.GetUsers(r.Context())
+	if err != nil {
+		response.InternalServerError(w, r, err)
+		return
+	}
+	response.OK(w, r, res)
 }

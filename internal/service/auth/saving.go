@@ -46,3 +46,33 @@ func (s *Service) GetUserSaving(ctx context.Context, userID string) (dest users.
 
 	return
 }
+
+func (s *Service) GetUsers(ctx context.Context) (dest []users.UserFullInfo, err error) {
+	logger := log.LoggerFromContext(ctx).Named("GetUsers")
+
+	user, err := s.userRepository.GetUsers(ctx)
+	if err != nil {
+		logger.Error("failed to get users", zap.Error(err))
+		return
+	}
+
+	dest = []users.UserFullInfo{}
+	for _, u := range user {
+		forAppend := users.UserFullInfo{User: u}
+
+		forAppend.Savings, err = s.userRepository.GetUserSavings(ctx, u.ID)
+		if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			logger.Error("failed to get user savings", zap.Error(err))
+			return
+		}
+
+		forAppend.Dependency, err = s.userRepository.GetUserDependencies(ctx, u.ID)
+		if err != nil && !errors.Is(err, sql.ErrNoRows) {
+			logger.Error("failed to get dependency", zap.Error(err))
+			return
+		}
+
+		dest = append(dest, forAppend)
+	}
+	return
+}

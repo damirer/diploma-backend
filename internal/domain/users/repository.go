@@ -8,7 +8,10 @@ type Repository interface {
 	CreateUserDependency(ctx context.Context, data UserDependency) (string, error)
 	CreateSobrietyTracking(ctx context.Context, data SobrietyTracking) (string, error)
 
+	GetUsers(ctx context.Context) ([]User, error)
+
 	GetUserDependency(ctx context.Context, id, dId string) (dest UserDependency, err error)
+	GetUserDependencies(ctx context.Context, id string) (dest []UserDependency, err error)
 	GetDependencies(ctx context.Context) ([]Dependency, error)
 	GetUserByEmailOrLogin(ctx context.Context, email string, login string) (User, error)
 	GetDependency(ctx context.Context, id string) (Dependency, error)

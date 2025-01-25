@@ -22,6 +22,12 @@ type User struct {
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
+type UserFullInfo struct {
+	User       User             `json:"user"`
+	Dependency []UserDependency `json:"dependency"`
+	Savings    Savings          `json:"savings"`
+}
+
 type UserDependency struct {
 	ID           string `db:"id,primarykey"`
 	UserID       string `db:"user_id"`

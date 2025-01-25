@@ -79,6 +79,33 @@ func (r *Repository) GetUserDependency(ctx context.Context, id, dId string) (des
 	return
 }
 
+func (r *Repository) GetUsers(ctx context.Context) (dest []users.User, err error) {
+	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
+	defer cancel()
+
+	query := `
+			SELECT created_at, updated_at, id, email, name, password
+				FROM users`
+	args := []interface{}{}
+
+	err = r.db.SelectContext(ctx, &dest, query, args...)
+	return
+}
+
+func (r *Repository) GetUserDependencies(ctx context.Context, id string) (dest []users.UserDependency, err error) {
+	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
+	defer cancel()
+
+	query := `SELECT   user_id, dependency_id
+			FROM user_dependencies
+	WHERE user_id=$1`
+
+	args := []interface{}{id}
+
+	err = r.db.SelectContext(ctx, &dest, query, args...)
+	return
+}
+
 func (r *Repository) CreateSobrietyTracking(ctx context.Context, data users.SobrietyTracking) (id string, err error) {
 	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
